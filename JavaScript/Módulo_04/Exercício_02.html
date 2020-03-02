@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exercício - 02</title>
+</head>
+
+<body>
+
+  <div id="app">
+    <input type="text" name="user" placeholder="Digite um nome">
+    <button>Procurar</button>
+    <ul></ul>
+  </div>
+
+
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script>
+    var inputElement = document.querySelector("#app input");
+    var btnElement = document.querySelector("#app button");
+    var listaElement = document.querySelector("ul");
+
+    btnElement.onclick = function () {
+      var user = inputElement.value;
+
+      if (user) {
+        axios.get("https://api.github.com/users/" + user + "/repos")
+          .then(function (response) {
+            listarRepositorios(response.data);
+          })
+          .catch(function (error) {
+            const errorElement = document.createTextNode("Usuário não encontrado ou nome digitado errado.");
+            const linhaErrorElement = document.createElement("li");
+
+            linhaErrorElement.appendChild(errorElement);
+            listaElement.appendChild(linhaErrorElement);
+          });
+      }
+
+    }
+
+    function listarRepositorios(repositorio) {
+
+      listaElement.innerHTML = "";
+      for (repo of repositorio) {
+
+        const textElement = document.createTextNode(repo.name);
+        const linhaElement = document.createElement("li");
+
+        linhaElement.appendChild(textElement);
+        listaElement.appendChild(linhaElement);
+      }
+    }
+
+
+  </script>
+
+</body>
+
+</html>

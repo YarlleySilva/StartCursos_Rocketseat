@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exercício - 04</title>
+</head>
+
+<body>
+
+  <div id="app">
+    <input type="text" name="nome" id="nome">
+    <button onclick="adicionar()">Adicionar</button>
+    <ul id="lista"></ul>
+  </div>
+
+  <script>
+
+    var nomes = ["Diego", "Gabriel", "Lucas"];
+    var newName = document.querySelector("input[name=nome]");
+    var lista = document.querySelector("lista");
+
+    function adicionar() {
+      var texto = newName.value;
+      nomes.push(texto);
+      newName.value = "";
+      var linha = document.createElement("li");
+      linha.innerHTML = texto;
+      lista = document.body.appendChild(linha);
+    }
+
+
+    for (var i = 0; i <= nomes.length - 1; i++) {
+
+      var linha = document.createElement("li");
+      linha.innerHTML = nomes[i];
+      lista = document.body.appendChild(linha);
+    }
+  </script>
+
+</body>
+
+</html>

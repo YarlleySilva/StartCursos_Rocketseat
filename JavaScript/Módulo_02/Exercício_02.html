@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exercício - 02</title>
+</head>
+
+<body>
+
+  <button class="btn">Clique em mim!.</button>
+  <div class="box"></div>
+
+  <script>
+
+    var btnElement = document.querySelector(".btn"); // Botão
+    var boxElement = document.querySelector(".box"); // DIV
+
+    var boxCor;
+
+    btnElement.onclick = function () {
+      var boxCreated = document.createElement("DIV");
+      boxCreated.style.width = 100 + "px";
+      boxCreated.style.height = 100 + "px";
+      boxCreated.style.backgroundColor = "#f00";
+      boxCreated.style.display = "inline-block";
+      boxCreated.textContent = "Passe o Mouse";
+      boxElement = document.body.appendChild(boxCreated);
+
+
+      boxCreated.onmouseover = function () {
+        boxCreated.style.backgroundColor = getRandomColor();
+      }
+    };
+
+    function getRandomColor() {
+      var letters = "0123456789ABCDEF";
+      var color = "#";
+      for (var i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+      }
+      return color;
+    }
+
+  </script>
+
+</body>
+
+</html>
