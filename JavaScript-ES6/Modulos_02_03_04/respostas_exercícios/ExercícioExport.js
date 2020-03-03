@@ -1,4 +1,5 @@
-//Exercício 01:
+//Exportando para o Exercício 02:
+
 export const idade = 23;
 
 export default class Usuario {
